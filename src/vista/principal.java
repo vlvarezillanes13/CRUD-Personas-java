@@ -1,8 +1,8 @@
 package vista;
 
 import action.funcion;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class principal extends javax.swing.JFrame {
 
@@ -228,10 +228,15 @@ public class principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "REVISAR DATOS INGRESADOS!!\n"
                     + "RUT: 11111111-k");
         } else {
-            fun.agregarPersona(txtRUT, txtNOMBRES, txtEMAIL);
-            JOptionPane.showMessageDialog(null, "DATOS INGRESADOS EXITOSAMENTE!!");
-            fun.limpiarDatos(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
-            fun.obtenerDatos(tablaDatos);
+
+            if (fun.agregarPersona(txtRUT, txtNOMBRES, txtEMAIL)) {
+                JOptionPane.showMessageDialog(null, "DATOS INGRESADOS EXITOSAMENTE!!");
+                fun.limpiarDatos(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
+                fun.obtenerDatos(tablaDatos);
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL INGRESADOS DATOS!!");
+            }
+
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -239,10 +244,13 @@ public class principal extends javax.swing.JFrame {
         if (fun.validarDatos(txtRUT, txtNOMBRES, txtEMAIL)) {
             JOptionPane.showMessageDialog(null, "NO SE HA SELECCIONADO USUARIO A ELIMNAR!!");
         } else {
-            fun.eliminarPersona(txtID);
-            JOptionPane.showMessageDialog(null, "DATOS ELIMINADOS EXITOSAMENTE!!");
-            fun.limpiarDatos(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
-            fun.obtenerDatos(tablaDatos);
+            if (fun.eliminarPersona(txtID)) {
+                JOptionPane.showMessageDialog(null, "DATOS ELIMINADOS EXITOSAMENTE!!");
+                fun.limpiarDatos(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
+                fun.obtenerDatos(tablaDatos);
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR DATOS!!");
+            }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -250,10 +258,13 @@ public class principal extends javax.swing.JFrame {
         if (fun.validarDatos(txtRUT, txtNOMBRES, txtEMAIL)) {
             JOptionPane.showMessageDialog(null, "NO SE HA SELECCIONADO USUARIO PARA ACTUALIZAR");
         } else {
-            fun.actualizarPersona(txtID, txtRUT, txtNOMBRES, txtEMAIL);
-            JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS EXITOSAMENTE!!");
-            fun.limpiarDatos(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
-            fun.obtenerDatos(tablaDatos);
+            if (fun.actualizarPersona(txtID, txtRUT, txtNOMBRES, txtEMAIL)) {
+                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS EXITOSAMENTE!!");
+                fun.limpiarDatos(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
+                fun.obtenerDatos(tablaDatos);
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR DATOS!!");
+            }
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 

@@ -25,32 +25,37 @@ public class persona {
         return rs;
     }
 
-    public void setPerson(String sql) {
+    public boolean setPerson(String sql) {
         try {
             Statement stm = (Statement) conect.createStatement();
             stm.executeUpdate(sql);
+            return true;
         } catch (SQLException e) {
             System.out.println("Error en set person " + e);
+            return false;
         }
     }
-    
-    public void deletePerson(String sql) {
+
+    public boolean deletePerson(String sql) {
         try {
             Statement stm = (Statement) conect.createStatement();
             stm.executeUpdate(sql);
+            return true;
         } catch (SQLException e) {
             System.out.println("Error en delete person " + e);
+            return false;
         }
     }
-    
-    public void updatePerson(String sql) {
+
+    public boolean updatePerson(String sql) {
         try {
             Statement stm = (Statement) conect.createStatement();
             stm.executeUpdate(sql);
+            return true;
         } catch (SQLException e) {
             System.out.println("Error en update person " + e);
+            return false;
         }
     }
-    
-    
+
 }

@@ -56,7 +56,7 @@ public class funcion {
         }
     }
 
-    public void agregarPersona(javax.swing.JTextField txtRUT, javax.swing.JTextField txtNOMBRES, javax.swing.JTextField txtEMAIL) {
+    public boolean agregarPersona(javax.swing.JTextField txtRUT, javax.swing.JTextField txtNOMBRES, javax.swing.JTextField txtEMAIL) {
         String RUT = txtRUT.getText();
         String NOMBRES = txtNOMBRES.getText();
         String EMAIL = txtEMAIL.getText();
@@ -64,26 +64,27 @@ public class funcion {
         String sql = "insert into persona (RUT,NOMBRES,EMAIL) values ('" + RUT + "','" + NOMBRES + "','" + EMAIL + "')";
 
         try {
-            person.setPerson(sql);
-
+            return person.setPerson(sql);
         } catch (Exception e) {
             System.out.println("Error en agregar persona " + e);
+            return person.setPerson(sql);
+
         }
     }
 
-    public void eliminarPersona(javax.swing.JTextField txtID) {
+    public boolean eliminarPersona(javax.swing.JTextField txtID) {
         String ID = txtID.getText();
         String sql = "delete from persona where ID = " + ID;
 
         try {
-            person.deletePerson(sql);
-
+            return person.deletePerson(sql);
         } catch (Exception e) {
             System.out.println("Error en eliminar persona " + e);
+            return person.deletePerson(sql);
         }
     }
 
-    public void actualizarPersona(javax.swing.JTextField txtID, javax.swing.JTextField txtRUT, javax.swing.JTextField txtNOMBRES, javax.swing.JTextField txtEMAIL) {
+    public boolean actualizarPersona(javax.swing.JTextField txtID, javax.swing.JTextField txtRUT, javax.swing.JTextField txtNOMBRES, javax.swing.JTextField txtEMAIL) {
         String ID = txtID.getText();
         String RUT = txtRUT.getText();
         String NOMBRES = txtNOMBRES.getText();
@@ -96,10 +97,10 @@ public class funcion {
                 + "' where ID = " + ID;
 
         try {
-            person.updatePerson(sql);
-
+            return person.updatePerson(sql);
         } catch (Exception e) {
             System.out.println("Error en actualizar persona " + e);
+            return person.updatePerson(sql);
         }
     }
 
