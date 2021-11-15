@@ -235,6 +235,9 @@ public class principal extends javax.swing.JFrame {
                 fun.obtenerDatos(tablaDatos);
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL INGRESADOS DATOS!!");
+                if(fun.validarRepet(txtRUT)){
+                    JOptionPane.showMessageDialog(null, "RUT YA EXISTE");
+                }
             }
 
         }
@@ -250,6 +253,10 @@ public class principal extends javax.swing.JFrame {
                 fun.obtenerDatos(tablaDatos);
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR DATOS!!");
+                if(fun.validarRepet(txtRUT)){
+                    JOptionPane.showMessageDialog(null, "RUT YA EXISTE");
+                }
+                
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -264,6 +271,9 @@ public class principal extends javax.swing.JFrame {
                 fun.obtenerDatos(tablaDatos);
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR DATOS!!");
+                if(fun.validarRepet(txtRUT)){
+                    JOptionPane.showMessageDialog(null, "RUT YA EXISTE");
+                }
             }
         }
     }//GEN-LAST:event_btnActualizarActionPerformed

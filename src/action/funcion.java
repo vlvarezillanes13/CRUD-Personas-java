@@ -23,6 +23,22 @@ public class funcion {
         }
         return false;
     }
+    
+    public boolean validarRepet(javax.swing.JTextField txtRUT){
+        String IN_RUT = txtRUT.getText();
+        ResultSet rs = person.getAllRut();
+        try {
+            while (rs.next()) {
+                String RUT = rs.getString("RUT");
+                if(RUT.equals(IN_RUT)){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error obtener datos " + e);
+        }
+        return false;
+    }
 
     public void limpiarDatos(javax.swing.JTable tablaDatos, javax.swing.JTextField ID, javax.swing.JTextField RUT, javax.swing.JTextField NOMBRES, javax.swing.JTextField EMAIL) {
         DefaultTableModel modelo = (DefaultTableModel) tablaDatos.getModel();

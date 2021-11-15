@@ -57,5 +57,16 @@ public class persona {
             return false;
         }
     }
+    
+    public ResultSet getAllRut(){ 
+        ResultSet rs = null;
+        try {
+            Statement stm = (Statement) conect.createStatement();
+            rs = stm.executeQuery("select rut from persona");
+        } catch (SQLException e) {
+            System.out.println("Error en consulta select " + e);
+        }
+        return rs;
+    }
 
 }
