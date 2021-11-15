@@ -1,7 +1,6 @@
 package vista;
 
 import action.funcion;
-import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 public class principal extends javax.swing.JFrame {
