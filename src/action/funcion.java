@@ -5,12 +5,14 @@ import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import validador.validador;
 
 public class funcion {
 
     private persona person = null;
     private validador validador;
+    private TableRowSorter trs;
 
     public funcion() {
         this.person = new persona();
@@ -40,20 +42,27 @@ public class funcion {
         return false;
     }
 
-    public void limpiarDatos(javax.swing.JTable tablaDatos, javax.swing.JTextField ID, javax.swing.JTextField RUT, javax.swing.JTextField NOMBRES, javax.swing.JTextField EMAIL) {
-        DefaultTableModel modelo = (DefaultTableModel) tablaDatos.getModel();
+    public void limpiarDatos(javax.swing.JTable tablaDatos,javax.swing.JTable tablabBusqueda, javax.swing.JTextField ID, javax.swing.JTextField RUT, javax.swing.JTextField NOMBRES, javax.swing.JTextField EMAIL, javax.swing.JTextField BUSQUEDA) {
+        DefaultTableModel modeloDatos = (DefaultTableModel) tablaDatos.getModel();
+        DefaultTableModel modeloBusqueda = (DefaultTableModel) tablabBusqueda.getModel();
 
         if (tablaDatos.getRowCount() > 0) {
             for (int i = 0; i < tablaDatos.getRowCount(); i++) {
-                modelo.removeRow(i);
+                modeloDatos.removeRow(i);
                 i = i - 1;
             }
         }
-
+        if (tablabBusqueda.getRowCount() > 0) {
+            for (int i = 0; i < tablabBusqueda.getRowCount(); i++) {
+                modeloBusqueda.removeRow(i);
+                i = i - 1;
+            }
+        }
         ID.setText("");
         RUT.setText("");
         NOMBRES.setText("");
         EMAIL.setText("");
+        BUSQUEDA.setText("");
     }
 
     public void obtenerDatos(javax.swing.JTable tablaDatos) {
@@ -135,5 +144,41 @@ public class funcion {
                 }
             }
         });
+    }
+    
+    public void tableFilter(javax.swing.JTable tablaBusqueda, javax.swing.JTextField txtBusqueda, javax.swing.JComboBox opcBusqueda){
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablaBusqueda.getModel();
+        
+        txtBusqueda.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased( KeyEvent ke){
+                String busqueda = txtBusqueda.getText();
+                String tipo = opcBusqueda.getSelectedItem().toString();
+                int col;
+                switch(tipo){
+                    case "RUT":
+                        col = 1;
+                        break;
+                    case "ID":
+                        col = 0;
+                        break;
+                    case "NOMBRES":
+                        col = 2;
+                        break;
+                    case "CORREO":
+                        col = 3;
+                        break;
+                    default:
+                        col = 1;
+                        break;
+                }
+  
+                trs.setRowFilter(RowFilter.regexFilter("(?i)"+busqueda, col));
+            }
+        });
+        
+        trs = new TableRowSorter(modelo);
+        tablaBusqueda.setRowSorter(trs);
     }
 }
