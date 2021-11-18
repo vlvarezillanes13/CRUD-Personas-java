@@ -15,6 +15,7 @@ public class principal extends javax.swing.JFrame {
         //fun.obtenerDatos(tablaDatos);
         //fun.obtenerDatos(tablaBusqueda);
         fun.mouseListerner(tablaDatos, txtID, txtRUT, txtNOMBRES, txtEMAIL);
+        fun.mouseListerner(tablaBusqueda, txtID, txtRUT, txtNOMBRES, txtEMAIL);
     }
 
     @SuppressWarnings("unchecked")
